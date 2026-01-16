@@ -1,278 +1,177 @@
-# Discord Copilot 🤖
+# Discord Copilot 🤖✨
 
-A production-ready Discord bot with an admin dashboard, RAG-powered knowledge base, and intelligent conversation memory.
+> A production-ready Discord bot with an AI-powered knowledge base, intelligent conversation memory, and a sleek admin dashboard.
 
-## 🚀 Features
+![Discord](https://img.shields.io/badge/Discord-Bot-5865F2?style=for-the-badge&logo=discord&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-pgvector-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
 
-- **Admin Dashboard**: Beautiful Next.js dashboard for managing bot configuration
-- **RAG Knowledge Base**: Upload PDFs to give your bot domain-specific knowledge
-- **Conversation Memory**: Bot maintains context across conversations
-- **Channel Management**: Control which Discord channels the bot responds in
-- **Customizable Instructions**: Define your bot's personality and behavior
-- **Multi-LLM Support**: Choose between Gemini, Claude, or GPT
+---
+
+## ✨ Features
+
+| Feature | Description |
+|---------|-------------|
+| 🎛️ **Admin Dashboard** | Beautiful Next.js dashboard with authentication for managing everything |
+| 📚 **RAG Knowledge Base** | Upload PDFs and give your bot domain-specific knowledge using vector embeddings |
+| 🧠 **Conversation Memory** | Bot remembers context across conversations with rolling summaries |
+| 📢 **Channel Management** | Control which Discord channels the bot responds in |
+| ⚙️ **Custom Instructions** | Define your bot's personality, behavior, and response style |
+| 🔄 **Multi-LLM Support** | Works with OpenRouter (Gemini, Claude, GPT, Llama, etc.) |
+
+---
 
 ## 🏗️ Architecture
 
 ```
 discord-copilot/
-├── discord-copilot-admin/      # Next.js admin dashboard
-│   ├── app/                    # App router pages
-│   │   ├── auth/              # Login/signup pages
-│   │   └── dashboard/         # Protected dashboard pages
-│   └── lib/                   # Utility functions
+├── discord-copilot-admin/      # Next.js 14 Admin Dashboard
+│   ├── app/                    
+│   │   ├── auth/              # Login & Signup
+│   │   └── dashboard/         # Protected admin pages
+│   │       ├── instructions/  # Bot personality config
+│   │       ├── knowledge/     # PDF upload & management
+│   │       ├── memory/        # Conversation context
+│   │       └── channels/      # Discord channel allow-list
+│   └── lib/                   
 │
-└── discord-copilot-backend/    # FastAPI + Discord bot
-    ├── api/                   # API routes
-    │   ├── routes/           # Endpoint handlers
-    │   └── middleware/       # Auth middleware
-    ├── bot/                  # Discord bot
-    ├── services/             # Business logic
-    │   ├── rag_service.py   # RAG pipeline
-    │   └── pdf_processor.py # PDF processing
-    └── db/                  # Database clients
+└── discord-copilot-backend/    # FastAPI + Discord.py Backend
+    ├── api/routes/            # REST API endpoints
+    ├── bot/                   # Discord bot logic
+    ├── services/              
+    │   ├── rag_service.py     # Vector search & embeddings
+    │   └── pdf_processor.py   # PDF text extraction
+    └── db/                    # Supabase client
 ```
 
-## 📋 Prerequisites
+---
 
-- Python 3.11+
+## 🚀 Quick Start
+
+### Prerequisites
+- Python 3.10+
 - Node.js 18+
-- PostgreSQL (Supabase)
-- Discord Bot Token
-- API Keys:
-  - OpenAI (for embeddings)
-  - Gemini/Claude/GPT (for LLM)
+- [Supabase](https://supabase.com) account (free tier works!)
+- [Discord Developer](https://discord.com/developers) bot token
+- [OpenRouter](https://openrouter.ai) API key
 
-## 🔧 Setup Instructions
+### 1️⃣ Clone & Setup Database
 
-### 1. Database Setup (Supabase)
+```bash
+git clone https://github.com/sidkoko/discord-copilot.git
+cd discord-copilot
+```
 
-1. Create a Supabase project at [supabase.com](https://supabase.com)
-2. Run the SQL schema in `discord-copilot-backend/schema.sql` in the Supabase SQL Editor
-3. Enable pgvector extension (should be done automatically)
-4. Create a storage bucket named "documents" for PDF uploads
+Run the SQL from `discord-copilot-backend/schema.sql` in your Supabase SQL Editor.
 
-### 2. Discord Bot Setup
-
-1. Go to [Discord Developer Portal](https://discord.com/developers/applications)
-2. Create a new application
-3. Go to "Bot" tab and create a bot
-4. Copy the bot token
-5. Enable these Privileged Gateway Intents:
-   - Message Content Intent
-   - Server Members Intent
-6. Go to OAuth2 → URL Generator:
-   - Select scopes: `bot`
-   - Select permissions: `Send Messages`, `Read Message History`, `Read Messages/View Channels`
-7. Use the generated URL to add the bot to your server
-
-### 3. Backend Setup
+### 2️⃣ Backend Setup
 
 ```bash
 cd discord-copilot-backend
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
+python -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 
-# Create .env file
-cp .env.example .env
-
-# Edit .env with your credentials
+# Configure environment
+cp .env.example .env  # Edit with your credentials
+python main.py
 ```
 
-**Required environment variables:**
-
-```env
-SUPABASE_URL=your_supabase_project_url
-SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
-SUPABASE_ANON_KEY=your_anon_key
-DATABASE_URL=postgresql://postgres:[password]@[host]:5432/postgres
-
-DISCORD_BOT_TOKEN=your_discord_bot_token
-
-OPENAI_API_KEY=your_openai_key
-GEMINI_API_KEY=your_gemini_key
-LLM_PROVIDER=gemini
-```
-
-### 4. Frontend Setup
+### 3️⃣ Frontend Setup
 
 ```bash
 cd discord-copilot-admin
-
-# Install dependencies
 npm install
 
-# Create .env.local file
-cp env.example.txt .env.local
-
-# Edit .env.local
+# Configure environment
+# Create .env.local with Supabase credentials
+npm run dev
 ```
 
-**Required environment variables:**
+### 4️⃣ Use the Bot!
 
+1. Open dashboard at `http://localhost:3000`
+2. Sign up and configure your bot
+3. Upload PDFs to the knowledge base
+4. Add your Discord channel ID to allow-list
+5. Mention the bot in Discord: `@YourBot What does the document say about...?`
+
+---
+
+## 🔧 Environment Variables
+
+### Backend (`.env`)
+```env
+SUPABASE_URL=your_supabase_url
+SUPABASE_SERVICE_ROLE_KEY=your_service_key
+SUPABASE_ANON_KEY=your_anon_key
+DISCORD_BOT_TOKEN=your_bot_token
+OPENROUTER_API_KEY=your_openrouter_key
+LLM_PROVIDER=openai/gpt-4o-mini
+```
+
+### Frontend (`.env.local`)
 ```env
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
 NEXT_PUBLIC_API_URL=http://localhost:8000
 ```
 
-## 🎮 Running Locally
+---
 
-### Start Backend (Terminal 1)
+## 📸 Screenshots
 
-```bash
-cd discord-copilot-backend
-source venv/bin/activate
-python main.py
-```
-
-The backend will start on `http://localhost:8000`
-- API docs: http://localhost:8000/docs
-- Health check: http://localhost:8000/health
-
-### Start Frontend (Terminal 2)
-
-```bash
-cd discord-copilot-admin
-npm run dev
-```
-
-The dashboard will start on `http://localhost:3000`
-
-## 📚 Usage Guide
-
-### 1. Create Admin Account
-
-1. Go to http://localhost:3000
-2. Click "Sign up"
-3. Create an account with your email
-
-### 2. Configure Bot Instructions
-
-1. Login to the dashboard
-2. Go to "System Instructions"
-3. Define how your bot should behave
-4. Click "Save Instructions"
-
-### 3. Upload Knowledge Base
-
-1. Go to "Knowledge Base"
-2. Upload PDF documents
-3. Wait for processing to complete (status will change to "completed")
-4. The bot will use this knowledge to answer questions
-
-### 4. Add Allowed Channels
-
-1. Go to "Channels"
-2. Get your Discord channel ID:
-   - Enable Developer Mode in Discord
-   - Right-click channel → Copy Channel ID
-3. Add the channel ID to allow-list
-
-### 5. Test the Bot
-
-1. Go to your Discord server
-2. In an allowed channel, mention the bot:
-   ```
-   @YourBot What is this document about?
-   ```
-3. The bot will respond using its instructions and knowledge base
-
-## 🚀 Deployment
-
-### Backend Deployment (Render)
-
-1. Push code to GitHub
-2. Create new Web Service on [render.com](https://render.com)
-3. Connect your repository
-4. Configure:
-   - Build Command: `pip install -r requirements.txt`
-   - Start Command: `python main.py`
-   - Environment: Python 3
-5. Add all environment variables from `.env`
-6. Deploy!
-
-### Frontend Deployment (Vercel)
-
-1. Push code to GitHub
-2. Import project on [vercel.com](https://vercel.com)
-3. Configure:
-   - Framework: Next.js
-   - Root Directory: `discord-copilot-admin`
-4. Add environment variables:
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - `NEXT_PUBLIC_API_URL` (your Render backend URL)
-5. Deploy!
-
-## 🔧 API Endpoints
-
-### Public Endpoints
-- `GET /health` - Health check
-- `GET /api/instructions` - Get system instructions
-- `GET /api/memory` - Get conversation memory
-- `GET /api/channels` - List allowed channels
-
-### Protected Endpoints (require JWT)
-- `POST /api/instructions` - Update instructions
-- `POST /api/knowledge/upload` - Upload PDF
-- `GET /api/knowledge/list` - List documents
-- `DELETE /api/knowledge/{id}` - Delete document
-- `POST /api/memory` - Update memory
-- `DELETE /api/memory` - Reset memory
-- `POST /api/channels` - Add channel
-- `DELETE /api/channels/{id}` - Remove channel
-
-## 🎨 Tech Stack
-
-### Frontend
-- Next.js 14 (App Router)
-- TypeScript
-- Tailwind CSS
-- Supabase Auth
-
-### Backend
-- FastAPI
-- discord.py
-- PostgreSQL + pgvector
-- OpenAI (embeddings)
-- Google Gemini / Anthropic Claude (LLM)
-
-## 📝 Development Tips
-
-- **Test RAG**: Upload a PDF and ask specific questions about its content
-- **Memory**: The bot remembers conversation context automatically
-- **LLM Switch**: Change `LLM_PROVIDER` in `.env` to switch between Gemini/Claude/GPT
-- **Logs**: Check terminal output for bot activity and errors
-
-## 🐛 Troubleshooting
-
-**Bot not responding:**
-- Check if channel is in allow-list
-- Verify bot has Message Content Intent enabled
-- Check bot online status in Discord
-
-**PDF upload fails:**
-- Ensure file is under 10MB
-- Check if Supabase storage bucket "documents" exists
-- Verify API backend is running
-
-**Authentication errors:**
-- Verify Supabase credentials in `.env` files
-- Check if JWT token is being sent correctly
-
-## 📄 License
-
-MIT
-
-## 🤝 Contributing
-
-Contributions welcome! Please open an issue or PR.
+| Dashboard | Knowledge Base | Memory |
+|-----------|----------------|--------|
+| System instructions config | PDF upload & management | Conversation context viewer |
 
 ---
 
-Built with ❤️ using Next.js, FastAPI, and Discord.py
+## 🛠️ Tech Stack
+
+**Frontend:** Next.js 14, TypeScript, Tailwind CSS, Supabase Auth
+
+**Backend:** FastAPI, discord.py, OpenRouter, pgvector
+
+**Database:** PostgreSQL (Supabase) with vector embeddings
+
+**AI:** OpenRouter API (GPT-4, Claude, Gemini, Llama, etc.)
+
+---
+
+## 📄 API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/health` | Health check |
+| GET | `/api/instructions` | Get system instructions |
+| POST | `/api/instructions` | Update instructions (auth required) |
+| POST | `/api/knowledge/upload` | Upload PDF (auth required) |
+| GET | `/api/knowledge/list` | List documents |
+| GET | `/api/memory` | Get conversation memory |
+| DELETE | `/api/memory` | Reset memory (auth required) |
+| GET | `/api/channels` | List allowed channels |
+| POST | `/api/channels` | Add channel (auth required) |
+
+---
+
+## 🚀 Deployment
+
+**Recommended Stack:**
+- **Backend:** [Render](https://render.com) (free tier available)
+- **Frontend:** [Vercel](https://vercel.com) (free tier available)
+- **Database:** [Supabase](https://supabase.com) (free tier available)
+
+See `DEPLOYMENT.md` for detailed deployment instructions.
+
+---
+
+## 📝 License
+
+MIT License - feel free to use this for your own projects!
+
+---
+
+<p align="center">
+  Built with ❤️ using Next.js, FastAPI, and Discord.py
+</p>
