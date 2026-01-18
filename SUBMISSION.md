@@ -14,6 +14,7 @@
 | 🔧 **Backend API** | [https://discord-copilot-api.onrender.com](https://discord-copilot-api.onrender.com) |
 | 📦 **Source Code** | [https://github.com/sidkoko/discord-copilot](https://github.com/sidkoko/discord-copilot) |
 | 🤖 **Discord Bot Invite** | [Add Bot to Server](https://discord.com/oauth2/authorize?client_id=1461262484726874142&permissions=274878024704&integration_type=0&scope=bot+applications.commands) |
+| 🎬 **Demo Video** | [Watch Demo](https://drive.google.com/file/d/1gHnjVXFqX33B7Wh9LNqD6mRV8izETLVb/view?usp=drive_link) |
 
 > **Note:** The Discord bot is integrated into the backend and runs continuously once the backend is deployed. You can test the bot by inviting it to your Discord server using the provided invite link.
 
