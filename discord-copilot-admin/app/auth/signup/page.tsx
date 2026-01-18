@@ -52,27 +52,27 @@ export default function SignupPage() {
 
     if (success) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
-                <div className="bg-white/10 backdrop-blur-lg p-8 rounded-2xl shadow-2xl w-full max-w-md border border-white/20 text-center">
+            <div className="min-h-screen flex items-center justify-center bg-gray-950">
+                <div className="bg-gray-900 p-8 rounded-2xl shadow-2xl w-full max-w-md border border-gray-800 text-center">
                     <div className="text-6xl mb-4">✅</div>
                     <h2 className="text-2xl font-bold text-white mb-2">Account Created!</h2>
-                    <p className="text-white/80">Redirecting to login...</p>
+                    <p className="text-gray-400">Redirecting to login...</p>
                 </div>
             </div>
         )
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
-            <div className="bg-white/10 backdrop-blur-lg p-8 rounded-2xl shadow-2xl w-full max-w-md border border-white/20">
+        <div className="min-h-screen flex items-center justify-center bg-gray-950">
+            <div className="bg-gray-900 p-8 rounded-2xl shadow-2xl w-full max-w-md border border-gray-800">
                 <div className="text-center mb-8">
                     <h1 className="text-4xl font-bold text-white mb-2">Create Account</h1>
-                    <p className="text-white/80">Join Discord Copilot</p>
+                    <p className="text-gray-400">Join Discord Copilot</p>
                 </div>
 
                 <form onSubmit={handleSignup} className="space-y-6">
                     {error && (
-                        <div className="bg-red-500/20 border border-red-500/50 text-white px-4 py-3 rounded-lg">
+                        <div className="bg-red-500/20 border border-red-500/50 text-red-400 px-4 py-3 rounded-lg">
                             {error}
                         </div>
                     )}
@@ -87,7 +87,7 @@ export default function SignupPage() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+                            className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
                             placeholder="you@example.com"
                         />
                     </div>
@@ -102,7 +102,7 @@ export default function SignupPage() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+                            className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
                             placeholder="••••••••"
                         />
                     </div>
@@ -117,7 +117,7 @@ export default function SignupPage() {
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             required
-                            className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+                            className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
                             placeholder="••••••••"
                         />
                     </div>
@@ -125,15 +125,15 @@ export default function SignupPage() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full py-3 px-4 bg-white text-purple-600 rounded-lg font-semibold hover:bg-white/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                        className="w-full py-3 px-4 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                     >
                         {loading ? 'Creating account...' : 'Sign Up'}
                     </button>
                 </form>
 
-                <p className="mt-6 text-center text-white/80 text-sm">
+                <p className="mt-6 text-center text-gray-400 text-sm">
                     Already have an account?{' '}
-                    <Link href="/auth/login" className="text-white font-semibold hover:underline">
+                    <Link href="/auth/login" className="text-purple-400 font-semibold hover:underline">
                         Sign in
                     </Link>
                 </p>

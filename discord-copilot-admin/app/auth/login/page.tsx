@@ -34,16 +34,16 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
-            <div className="bg-white/10 backdrop-blur-lg p-8 rounded-2xl shadow-2xl w-full max-w-md border border-white/20">
+        <div className="min-h-screen flex items-center justify-center bg-gray-950">
+            <div className="bg-gray-900 p-8 rounded-2xl shadow-2xl w-full max-w-md border border-gray-800">
                 <div className="text-center mb-8">
                     <h1 className="text-4xl font-bold text-white mb-2">Discord Copilot</h1>
-                    <p className="text-white/80">Admin Dashboard</p>
+                    <p className="text-gray-400">Admin Dashboard</p>
                 </div>
 
                 <form onSubmit={handleLogin} className="space-y-6">
                     {error && (
-                        <div className="bg-red-500/20 border border-red-500/50 text-white px-4 py-3 rounded-lg">
+                        <div className="bg-red-500/20 border border-red-500/50 text-red-400 px-4 py-3 rounded-lg">
                             {error}
                         </div>
                     )}
@@ -58,7 +58,7 @@ export default function LoginPage() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+                            className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
                             placeholder="you@example.com"
                         />
                     </div>
@@ -73,7 +73,7 @@ export default function LoginPage() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+                            className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
                             placeholder="••••••••"
                         />
                     </div>
@@ -81,15 +81,15 @@ export default function LoginPage() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full py-3 px-4 bg-white text-purple-600 rounded-lg font-semibold hover:bg-white/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                        className="w-full py-3 px-4 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                     >
                         {loading ? 'Signing in...' : 'Sign In'}
                     </button>
                 </form>
 
-                <p className="mt-6 text-center text-white/80 text-sm">
+                <p className="mt-6 text-center text-gray-400 text-sm">
                     Don't have an account?{' '}
-                    <Link href="/auth/signup" className="text-white font-semibold hover:underline">
+                    <Link href="/auth/signup" className="text-purple-400 font-semibold hover:underline">
                         Sign up
                     </Link>
                 </p>
