@@ -175,3 +175,5 @@ MIT License - feel free to use this for your own projects!
 <p align="center">
   Built with ❤️ using Next.js, FastAPI, and Discord.py
 </p>
+
+readme tester edit
