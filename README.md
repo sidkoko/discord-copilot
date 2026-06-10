@@ -176,6 +176,4 @@ MIT License - feel free to use this for your own projects!
   Built with ❤️ using Next.js, FastAPI, and Discord.py
 </p>
 
-readme tester edit
 
-adding incremental PR check commit
